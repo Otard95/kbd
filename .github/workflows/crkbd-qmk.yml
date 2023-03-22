@@ -18,19 +18,19 @@ jobs:
         with:
           repository: qmk/qmk_firmware
           submodules: recursive
-          path: ~/qmk_firmware
+          path: qmk_firmware
 
       - name: Checkout userspace
         uses: actions/checkout@v3
         with:
-          path: ~/kbd
+          path: kbd
 
       - name: Move and rename crkbd qmk setup
-        run: cp -rT ~/kbd/crkbd/qmk ~/qmk_firmware/keyboards/crkbd/keymaps/${{ github.actor }}
+        run: cp -rT kbd/crkbd/qmk qmk_firmware/keyboards/crkbd/keymaps/${{ github.actor }}
 
       - name: Configure QMK CLI
         run: |
-          qmk config user.qmk_home="$HOME/qmk_firmware"
+          qmk config user.qmk_home="$PWD/qmk_firmware"
           qmk config user.keyboard=crkbd/rev1
           qmk config user.keymap=${{ github.actor }}
 
