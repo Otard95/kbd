@@ -28,15 +28,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: filter
     if: needs.filter.outputs.crkbd-qmk == 'true'
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/workflows/crkbd-qmk.yml
+    uses: ./.github/workflows/crkbd-qmk.yml
 
   crkbd-via:
     needs: filter
     runs-on: ubuntu-latest
     name: Release crkbd via
     if: needs.filter.outputs.crkbd-via == 'true'
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/workflows/crkbd-via.yml
+    uses: ./.github/workflows/crkbd-via.yml
