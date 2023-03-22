@@ -25,14 +25,12 @@ jobs:
 
   crkbd-qmk:
     name: Release crkbd qmk
-    runs-on: ubuntu-latest
     needs: filter
     if: needs.filter.outputs.crkbd-qmk == 'true'
     uses: ./.github/workflows/crkbd-qmk.yml
 
   crkbd-via:
-    needs: filter
-    runs-on: ubuntu-latest
     name: Release crkbd via
+    needs: filter
     if: needs.filter.outputs.crkbd-via == 'true'
     uses: ./.github/workflows/crkbd-via.yml
