@@ -1,0 +1,49 @@
+name: Release crkbd qmk
+on:
+  workflow_call:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: qmkfm/qmk_cli
+    strategy:
+      fail-fast: false
+
+    steps:
+      - name: Disable git save directory checks
+        run: git config --global --add save.directory '*'
+
+      - name: Checkout QMK
+        uses: actions/checkout@v3
+        with:
+          repository: qmk/qmk_firmware
+          submodules: recursive
+          path: ~/qmk_firmware
+
+      - name: Checkout userspace
+        uses: actions/checkout@v3
+        with:
+          path: ~/kbd
+
+      - name: Move and rename crkbd qmk setup
+        run: cp -rT ~/kbd/crkbd/qmk ~/qmk_firmware/keyboards/crkbd/keymaps/${{ github.actor }}
+
+      - name: Configure QMK CLI
+        run: |
+          qmk config user.qmk_home="$HOME/qmk_firmware"
+          qmk config user.keyboard=crkbd/rev1
+          qmk config user.keymap=${{ github.actor }}
+
+      - name: Build firmware
+        run: qmk compile
+
+      - name: Archive firmware
+        uses: actions/upload-artifact@v3
+        continue-on-error: true
+        with:
+          name: ${{ matrix.file }}_${{ github.actor }}
+          path: |
+            *.hex
+            *.bin
+            *.uf2
+
