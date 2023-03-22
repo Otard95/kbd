@@ -5,12 +5,15 @@ on:
       - main
 
 jobs:
-  filter-paths:
+  filter:
     name: Determine changed paths
-    id: filter
+    outputs:
+      crkbd-qmk: ${{ steps.filter.outputs.crkbd-qmk }}
+      crkbd-via: ${{ steps.filter.outputs.crkbd-via }}
     steps:
       - uses: actions/checkout@v3
-      - determine-paths:
+      - name: Determine paths
+        id: filter
         uses: dorny/paths-filter@v2
         with:
           filters: |
@@ -21,12 +24,14 @@ jobs:
 
   crkbd-qmk:
     name: Release crkbd qmk
-    if: steps.filter.outputs.crkbd-qmk == 'true'
+    needs: filter-paths
+    if: needs.filter.outputs.crkbd-qmk == 'true'
     steps:
       - uses: ./.github/workflows/crkbd-qmk.yml
 
   crkbd-via:
+    needs: filter-paths
     name: Release crkbd via
-    if: steps.filter.outputs.crkbd-via == 'true'
+    if: needs.filter.outputs.crkbd-via == 'true'
     steps:
       - uses: ./.github/workflows/crkbd-via.yml
