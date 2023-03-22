@@ -29,6 +29,7 @@ jobs:
     needs: filter
     if: needs.filter.outputs.crkbd-qmk == 'true'
     steps:
+      - uses: actions/checkout@v3
       - uses: ./.github/workflows/crkbd-qmk.yml
 
   crkbd-via:
@@ -37,4 +38,5 @@ jobs:
     name: Release crkbd via
     if: needs.filter.outputs.crkbd-via == 'true'
     steps:
+      - uses: actions/checkout@v3
       - uses: ./.github/workflows/crkbd-via.yml
