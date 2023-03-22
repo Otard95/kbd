@@ -7,6 +7,7 @@ on:
 jobs:
   filter:
     name: Determine changed paths
+    runs-on: ubuntu-latest
     outputs:
       crkbd-qmk: ${{ steps.filter.outputs.crkbd-qmk }}
       crkbd-via: ${{ steps.filter.outputs.crkbd-via }}
@@ -24,6 +25,7 @@ jobs:
 
   crkbd-qmk:
     name: Release crkbd qmk
+    runs-on: ubuntu-latest
     needs: filter-paths
     if: needs.filter.outputs.crkbd-qmk == 'true'
     steps:
@@ -31,6 +33,7 @@ jobs:
 
   crkbd-via:
     needs: filter-paths
+    runs-on: ubuntu-latest
     name: Release crkbd via
     if: needs.filter.outputs.crkbd-via == 'true'
     steps:
