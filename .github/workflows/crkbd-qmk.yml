@@ -41,9 +41,8 @@ jobs:
         uses: actions/upload-artifact@v3
         continue-on-error: true
         with:
-          name: ${{ matrix.file }}_${{ github.actor }}
+          name: crkbd_rev1_${{ github.actor }}
           path: |
             *.hex
             *.bin
             *.uf2
-
