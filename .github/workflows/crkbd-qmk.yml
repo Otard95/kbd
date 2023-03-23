@@ -47,3 +47,40 @@ jobs:
             qmk_firmware/*.hex
             qmk_firmware/*.bin
             qmk_firmware/*.uf2
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      statuses: write
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Get the AAB
+        uses: actions/download-artifact@v3
+        with:
+          name: crkbd_rev1_${{ github.actor }}
+
+      - name: List files
+        run: ls -la
+
+      - uses: codfish/semantic-release-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          dry_run: true
+          branches: |
+            [ 'main' ]
+          tag_format: '@crkbd/qmk@${version}'
+          plugins: |
+            [
+              '@semantic-release/commit-analyzer',
+              '@semantic-release/release-notes-generator',
+              ['@semantic-release/github', {
+                "assets": [
+                  { "path": "crkbd_rev1_*.hex", "name": "crkbd_rev1_firmware.hex", "label": "crkbd qmk firmware" }
+                ]
+              }]
+            ]
