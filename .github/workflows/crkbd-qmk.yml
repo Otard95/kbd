@@ -10,7 +10,7 @@ jobs:
       fail-fast: false
 
     steps:
-      - name: Disable git save directory checks
+      - name: Disable git safe directory checks
         run: git config --global --add save.directory '*'
 
       - name: Checkout QMK
