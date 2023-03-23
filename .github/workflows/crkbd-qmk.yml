@@ -2,10 +2,16 @@ name: Release crkbd qmk
 on:
   workflow_call:
   workflow_dispatch:
+permissions:
+  contents: write
+  statuses: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      statuses: none
     container: qmkfm/qmk_cli
     strategy:
       fail-fast: false
