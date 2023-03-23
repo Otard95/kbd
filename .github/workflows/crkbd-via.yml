@@ -6,10 +6,13 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      statuses: write
 
     steps:
       - uses: actions/checkout@v3
-      - uses: codfish/semantic-release-action@v2
+      - uses: docker://codfish/semantic-release-action:v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
