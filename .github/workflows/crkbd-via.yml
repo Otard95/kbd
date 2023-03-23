@@ -8,4 +8,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-
+      - run: codfish/semantic-release-action@v2
+        with:
+          dry_run: true
+          branches: |
+            [ 'main' ]
+          tag_format: '@crkbd/via@${version}'
+          additional_packages: |
+            ['@semantic-release/git']
+          plugins: |
+            ['@semantic-release/commit-analyzer', '@semantic-release/release-notes-generator', '@semantic-release/github', '@semantic-release/git']
