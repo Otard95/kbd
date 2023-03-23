@@ -3,10 +3,15 @@ on:
   push:
     branches:
       - main
+permissions:
+  contents: write
+  statuses: write
 
 jobs:
   filter:
     name: Determine changed paths
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     outputs:
       crkbd-qmk: ${{ steps.filter.outputs.crkbd-qmk }}
