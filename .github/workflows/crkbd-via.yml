@@ -27,7 +27,7 @@ jobs:
               '@semantic-release/release-notes-generator',
               ['@semantic-release/github', {
                 "assets": [
-                  { "path": "crkbd/via/layout.json", "label": "crkbd via layout" }
+                  { "path": "crkbd/via/layout.json", "name": "crkbd_layout.json", "label": "crkbd via layout" }
                 ]
               }]
             ]
