@@ -17,7 +17,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           dry_run: true
-          extends: crkbd/via/.releaserc
           branches: |
             [ 'main' ]
           commit_paths: |
