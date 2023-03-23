@@ -12,14 +12,17 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: codfish/semantic-release-action@v2
+      - uses: Otard95/semantic-release-action@v2
 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           dry_run: true
+          extends: crkbd/via/.releaserc
           branches: |
             [ 'main' ]
+          commit_paths: |
+            ['crkbd/via/**']
           tag_format: '@crkbd/via@${version}'
           plugins: |
             [

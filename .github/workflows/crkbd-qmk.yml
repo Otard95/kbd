@@ -71,13 +71,16 @@ jobs:
       - name: List files
         run: ls -la
 
-      - uses: codfish/semantic-release-action@v2
+      - uses: Otard95/semantic-release-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           dry_run: true
+          extends: crkbd/qmk/.releaserc
           branches: |
             [ 'main' ]
+          commit_paths: |
+            ['crkbd/qmk/**']
           tag_format: '@crkbd/qmk@${version}'
           plugins: |
             [
