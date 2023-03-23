@@ -68,10 +68,7 @@ jobs:
         with:
           name: crkbd_rev1_${{ github.actor }}
 
-      - name: List files
-        run: ls -la
-
-      - uses: Otard95/semantic-release-action@v2
+      - uses: codfish/semantic-release-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
