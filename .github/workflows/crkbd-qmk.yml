@@ -43,6 +43,6 @@ jobs:
         with:
           name: crkbd_rev1_${{ github.actor }}
           path: |
-            *.hex
-            *.bin
-            *.uf2
+            qmk_firmware/*.hex
+            qmk_firmware/*.bin
+            qmk_firmware/*.uf2
