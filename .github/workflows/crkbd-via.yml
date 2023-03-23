@@ -1,6 +1,7 @@
 name: Release crkbd via
 on:
   workflow_call:
+  workflow_dispatch:
 
 jobs:
   release:
@@ -14,7 +15,13 @@ jobs:
           branches: |
             [ 'main' ]
           tag_format: '@crkbd/via@${version}'
-          additional_packages: |
-            ['@semantic-release/git']
           plugins: |
-            ['@semantic-release/commit-analyzer', '@semantic-release/release-notes-generator', '@semantic-release/github', '@semantic-release/git']
+            [
+              '@semantic-release/commit-analyzer',
+              '@semantic-release/release-notes-generator',
+              ['@semantic-release/github', {
+                "assets": [
+                  { "path": "crkbd/via/layout.json", "label": "crkbd via layout" }
+                ]
+              }]
+            ]
