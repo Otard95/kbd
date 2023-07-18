@@ -75,8 +75,6 @@ jobs:
           dry_run: true
           branches: |
             [ 'main' ]
-          commit_paths: |
-            ['crkbd/qmk/**']
           tag_format: '@crkbd/qmk@${version}'
           plugins: |
             [
