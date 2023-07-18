@@ -63,7 +63,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Get the AAB
+      - name: Download firmware
         uses: actions/download-artifact@v3
         with:
           name: crkbd_rev1_${{ github.actor }}
