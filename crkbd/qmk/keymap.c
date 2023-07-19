@@ -83,8 +83,8 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 }
 
 #define L_BASE 0
-#define L_LOWER 2
-#define L_RAISE 4
+#define L_SYMBOL 2
+#define L_ACT 4
 #define L_ADJUST 8
 
 void oled_render_layer_state(void) {
@@ -93,16 +93,16 @@ void oled_render_layer_state(void) {
         case L_BASE:
             oled_write_ln_P(PSTR("Default"), false);
             break;
-        case L_LOWER:
-            oled_write_ln_P(PSTR("Lower"), false);
+        case L_SYMBOL:
+            oled_write_ln_P(PSTR("Symbol"), false);
             break;
-        case L_RAISE:
-            oled_write_ln_P(PSTR("Raise"), false);
+        case L_ACT:
+            oled_write_ln_P(PSTR("Act"), false);
             break;
         case L_ADJUST:
-        case L_ADJUST|L_LOWER:
-        case L_ADJUST|L_RAISE:
-        case L_ADJUST|L_LOWER|L_RAISE:
+        case L_ADJUST|L_SYMBOL:
+        case L_ADJUST|L_ACT:
+        case L_ADJUST|L_SYMBOL|L_ACT:
             oled_write_ln_P(PSTR("Adjust"), false);
             break;
     }
