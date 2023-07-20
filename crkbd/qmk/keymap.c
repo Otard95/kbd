@@ -39,7 +39,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_ESC,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  KC_BSLS,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      LCTL_EQ,   HTM_A,   HTM_S,   HTM_D,   HTM_F,    KC_G,                         KC_H,   HTM_J,   HTM_K,   HTM_L,HTM_SCLN, KC_QUOT,
+      LCTL_EQ,   HRM_A,   HRM_S,   HRM_D,   HRM_F,    KC_G,                         KC_H,   HRM_J,   HRM_K,   HRM_L,HRM_SCLN, KC_QUOT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_MINS,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -89,14 +89,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         // If any home row mod is pressed, don't hold on other key press
-        case HTM_A:
-        case HTM_S:
-        case HTM_D:
-        case HTM_F:
-        case HTM_J:
-        case HTM_K:
-        case HTM_L:
-        case HTM_SCLN:
+        case HRM_A:
+        case HRM_S:
+        case HRM_D:
+        case HRM_F:
+        case HRM_J:
+        case HRM_K:
+        case HRM_L:
+        case HRM_SCLN:
             return false;
         // Otherwise, hold on other key press
         default:
