@@ -16,7 +16,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          dry_run: true
           branches: |
             [ 'main' ]
           tag_format: '@crkbd/via@${version}'
