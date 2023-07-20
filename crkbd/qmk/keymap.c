@@ -105,6 +105,9 @@ void oled_render_layer_state(void) {
         case L_ADJUST|L_SYMBOL|L_ACT:
             oled_write_ln_P(PSTR("Adjust"), false);
             break;
+        default:
+            oled_write_ln_P(PSTR("Default"), false);
+            break;
     }
 }
 
