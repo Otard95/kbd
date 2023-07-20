@@ -85,6 +85,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
+#ifdef HOLD_ON_OTHER_KEY_PRESS_PER_KEY
+bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        // If any home row mod is pressed, don't hold on other key press
+        case HTM_A:
+        case HTM_S:
+        case HTM_D:
+        case HTM_F:
+        case HTM_J:
+        case HTM_K:
+        case HTM_L:
+        case HTM_SCLN:
+            return false;
+        // Otherwise, hold on other key press
+        default:
+            return true;
+    }
+}
+#endif
+
 #ifdef OLED_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
   if (!is_keyboard_master()) {
