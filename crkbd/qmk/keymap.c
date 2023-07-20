@@ -23,12 +23,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define LGUI_TAB MT(MOD_LGUI, KC_TAB)
 #define LALT_ENT MT(MOD_LALT, KC_ENT)
 
+// Home Row Mods
+// Currently using GASC home row mod layout
+#define HRM_A LGUI_T(KC_A)
+#define HRM_S LALT_T(KC_S)
+#define HRM_D LSFT_T(KC_D)
+#define HRM_F LCTL_T(KC_F)
+#define HRM_J RCTL_T(KC_J)
+#define HRM_K RSFT_T(KC_K)
+#define HRM_L LALT_T(KC_L)
+#define HRM_SCLN RGUI_T(KC_SCLN)
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_ESC,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  KC_BSLS,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      LCTL_EQ,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,
+      LCTL_EQ,   HTM_A,   HTM_S,   HTM_D,   HTM_F,    KC_G,                         KC_H,   HTM_J,   HTM_K,   HTM_L,HTM_SCLN, KC_QUOT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_MINS,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
