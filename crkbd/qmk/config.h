@@ -50,4 +50,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #define RGBLIGHT_DEFAULT_HUE 175
 #endif
 
+// Tap-Hold settings
+#define HOLD_ON_OTHER_KEY_PRESS
+
 #define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"
