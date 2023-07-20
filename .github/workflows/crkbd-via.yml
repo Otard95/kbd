@@ -19,8 +19,6 @@ jobs:
           dry_run: true
           branches: |
             [ 'main' ]
-          commit_paths: |
-            ['crkbd/via/**']
           tag_format: '@crkbd/via@${version}'
           plugins: |
             [
