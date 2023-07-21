@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include QMK_KEYBOARD_H
 #include <stdio.h>
 
+// Mod-taps
 #define LCTL_EQ MT(MOD_LCTL, KC_EQL)
 #define LGUI_TAB MT(MOD_LGUI, KC_TAB)
 #define LALT_ENT MT(MOD_LALT, KC_ENT)
