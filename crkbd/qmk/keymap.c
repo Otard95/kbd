@@ -24,6 +24,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define LGUI_TAB MT(MOD_LGUI, KC_TAB)
 #define LALT_ENT MT(MOD_LALT, KC_ENT)
 
+// Layer-taps
+#define LT1_SPC LT(1, KC_SPC)
+#define LT2_BSP LT(2, KC_BSPC)
+
 // Home Row Mods
 // Currently using GASC home row mod layout
 #define HRM_A LGUI_T(KC_A)
@@ -44,7 +48,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_MINS,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                             TO(1), KC_SPC,LGUI_TAB,   LALT_ENT, KC_BSPC,   TO(2)
+                                            TO(1), LT1_SPC,LGUI_TAB,   LALT_ENT, LT2_BSP,   TO(2)
                                       //`--------------------------'  `--------------------------'
 
   ),
