@@ -103,6 +103,10 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
         case HRM_L:
         case HRM_SCLN:
             return false;
+        // If any layer-tap is pressed, don't hold on other key press
+        case LT1_SPC:
+        case LT2_BSP:
+            return false;
         // Otherwise, hold on other key press
         default:
             return true;
