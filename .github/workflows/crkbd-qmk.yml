@@ -82,7 +82,21 @@ jobs:
                   { "type": "tweak", "release": "patch" }
                 ]
               }],
-              '@semantic-release/release-notes-generator',
+              ['@semantic-release/release-notes-generator', {
+                "presetConfig": {
+                  "types": [
+                    {"type": "feat", "section": "Features"},
+                    {"type": "fix", "section": "Bug Fixes"},
+                    {"type": "tweak", "section": "Tweaks"}
+                    {"type": "chore", "hidden": true},
+                    {"type": "docs", "hidden": true},
+                    {"type": "style", "hidden": true},
+                    {"type": "refactor", "hidden": true},
+                    {"type": "perf", "hidden": true},
+                    {"type": "test", "hidden": true}
+                  ]
+                }
+              }],
               ['@semantic-release/github', {
                 "assets": [
                   { "path": "crkbd_rev1_*.hex", "name": "crkbd_rev1_firmware.hex", "label": "crkbd qmk firmware" }
