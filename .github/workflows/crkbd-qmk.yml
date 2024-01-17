@@ -25,6 +25,7 @@ jobs:
           repository: qmk/qmk_firmware
           submodules: recursive
           path: qmk_firmware
+          ref: ba10b87063e6911445103ca1f925edadc4b179c3
 
       - name: Checkout userspace
         uses: actions/checkout@v3
