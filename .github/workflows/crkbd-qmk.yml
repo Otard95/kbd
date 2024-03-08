@@ -76,6 +76,10 @@ jobs:
           branches: |
             [ 'main' ]
           tag-format: '@crkbd/qmk@${version}'
+          additional-packages: |
+            [ '@semantic-release/commit-analyzer',
+              '@semantic-release/release-notes-generator',
+              '@semantic-release/github' ]
           plugins: |
             [
               ['@semantic-release/commit-analyzer', {
@@ -88,7 +92,7 @@ jobs:
                   "types": [
                     {"type": "feat", "section": "Features"},
                     {"type": "fix", "section": "Bug Fixes"},
-                    {"type": "tweak", "section": "Tweaks"}
+                    {"type": "tweak", "section": "Tweaks"},
                     {"type": "chore", "hidden": true},
                     {"type": "docs", "hidden": true},
                     {"type": "style", "hidden": true},
