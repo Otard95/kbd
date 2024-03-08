@@ -114,6 +114,7 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
 }
 #endif
 
+
 #ifdef OLED_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
   if (!is_keyboard_master()) {
