@@ -39,6 +39,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define HRM_L LALT_T(KC_L)
 #define HRM_SCLN RGUI_T(KC_SCLN)
 
+// Macros
+enum maros {
+  MC_COPY = SAFE_RANGE,
+  MC_PSTE,
+  MC_CUT,
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
@@ -48,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
        KC_GRV,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_MINS,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                           KC_ESC, LT1_SPC,LGUI_TAB,   LALT_ENT, LT2_BSP, _______
+                                           KC_ESC, LT1_SPC,LGUI_TAB,   LALT_ENT, LT2_BSP,   TO(4)
                                       //`--------------------------'  `--------------------------'
 
   ),
@@ -87,6 +94,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           _______, _______, _______,    _______, _______, _______
                                       //`--------------------------'  `--------------------------'
+  ),
+
+  [4] = LAYOUT_split_3x6_3(
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+       KC_ESC,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      LCTL_EQ,   HRM_A,   HRM_S,   HRM_D,   HRM_F,    KC_G,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      KC_LSFT,    KC_Z,  MC_CUT, MC_COPY, MC_PSTE,    KC_B,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                            TO(0),  KC_SPC, _______,    _______, _______, _______
+                                      //`--------------------------'  `--------------------------'
   )
 };
 
@@ -114,7 +133,6 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
 }
 #endif
 
-
 #ifdef OLED_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
   if (!is_keyboard_master()) {
@@ -127,6 +145,7 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 #define L_SYMBOL 2
 #define L_ACT 4
 #define L_ADJUST 8
+#define L_ONE_HANDED 16
 
 void oled_render_layer_state(void) {
     oled_write_P(PSTR("Layer: "), false);
@@ -145,6 +164,9 @@ void oled_render_layer_state(void) {
         case L_ADJUST|L_ACT:
         case L_ADJUST|L_SYMBOL|L_ACT:
             oled_write_ln_P(PSTR("Adjust"), false);
+            break;
+        case L_ONE_HANDED:
+            oled_write_ln_P(PSTR("One Handed"), false);
             break;
         default:
             oled_write_ln_P(PSTR("Default"), false);
@@ -217,7 +239,20 @@ bool oled_task_user(void) {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (record->event.pressed) {
     set_keylog(keycode, record);
+
+    switch(keycode) {
+      case MC_COPY:
+        SEND_STRING(SS_LCTL("c"));
+        break;
+      case MC_PSTE:
+        SEND_STRING(SS_LCTL("v"));
+        break;
+      case MC_CUT:
+        SEND_STRING(SS_LCTL("x"));
+        break;
+    }
   }
+
   return true;
 }
 #endif // OLED_ENABLE
