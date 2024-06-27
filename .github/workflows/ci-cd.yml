@@ -16,6 +16,7 @@ jobs:
     outputs:
       crkbd-qmk: ${{ steps.filter.outputs.crkbd-qmk }}
       crkbd-via: ${{ steps.filter.outputs.crkbd-via }}
+      piantor_pro-qmk: ${{ steps.filter.outputs.piantor_pro-qmk }}
     steps:
       - uses: actions/checkout@v3
       - name: Determine paths
@@ -27,6 +28,8 @@ jobs:
               - './crkbd/qmk/**'
             crkbd-via:
               - './crkbd/via/**'
+            piantor_pro-qmk:
+              - './piantor_pro/qmk/**'
 
   crkbd-qmk:
     name: Release crkbd qmk
@@ -39,3 +42,9 @@ jobs:
     needs: filter
     if: needs.filter.outputs.crkbd-via == 'true'
     uses: ./.github/workflows/crkbd-via.yml
+
+  piantor_pro-qmk:
+    name: Release piantor_pro qmk
+    needs: filter
+    if: needs.filter.outputs.piantor_pro-qmk == 'true'
+    uses: ./.github/workflows/piantor_pro-qmk.yml
