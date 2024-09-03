@@ -4,7 +4,6 @@
 #include QMK_KEYBOARD_H
 
 // Mod-taps
-#define LCTL_EQ MT(MOD_LCTL, KC_EQL)
 #define LGUI_TAB MT(MOD_LGUI, KC_TAB)
 #define LALT_ENT MT(MOD_LALT, KC_ENT)
 
@@ -32,7 +31,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
        KC_EQL,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_MINS,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                            TO(4), LT1_SPC,LGUI_TAB,   LALT_ENT, LT2_BSP, _______ //                 Replace KC_SLSH with esc?
+                                           KC_MEH, LT1_SPC,LGUI_TAB,   LALT_ENT, LT2_BSP, KC_HYPR //                 Replace KC_SLSH with esc?
                                       //`--------------------------'  `--------------------------'
 
   ),
